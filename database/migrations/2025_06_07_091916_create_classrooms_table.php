@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('secretaries', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('user_id');
+            $table->string('category_id');
+            $table->enum('period',['MORNING', 'AFTERNOON', 'NIGHT']);
+            $table->time('starter');
+            $table->time('finished');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('secretaries');
+        Schema::dropIfExists('classrooms');
     }
 };
