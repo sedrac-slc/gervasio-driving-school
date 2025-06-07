@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClassroomRequest;
 use Illuminate\Http\Request;
+use App\Models\Classroom;
+
 use Exception;
 
 class ClassroomController extends Controller
@@ -13,7 +16,8 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        $classrooms = Classroom::with('category')->orderBy('created_at', 'desc')->paginate();
+        return view('auth.classroom.index', compact('classrooms'));
     }
 
     /**
@@ -21,39 +25,48 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.classroom.form');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClassroomRequest $request)
     {
-        //
+        try{
+            Classroom::create($request->all());
+            flash()->success('Turma criado com successo');
+            return redirect()->route('classrooms.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $classroom = Classroom::find($id);
+        return view('auth.classroom.form', compact('classroom'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClassroomRequest $request, string $id)
     {
-        //
+        try{
+            $classroom = Classroom::find($id);
+            $classroom->update($request->all());
+            flash()->success('Turma editado com successo');
+            return redirect()->route('classrooms.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 
     /**
@@ -61,6 +74,14 @@ class ClassroomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $classroom = Classroom::find($id);
+            $classroom->delete();
+            flash()->success('Turma eliminado com successo');
+            return redirect()->route('classrooms.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 }

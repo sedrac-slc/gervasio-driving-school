@@ -15,28 +15,28 @@ class ClassroomSeeder extends Seeder
     {
         $ligeiro = Category::where('name', CategorySeeder::LIGEIRO['name'])->first();
         if (isset($ligeiro->id)) {
-            $dataOne =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '6h:40m','finished' => '7h:50m',];
+            $dataOne =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '06:40','finished' => '07:50',];
             Classroom::updateOrCreate($dataOne, $dataOne);
 
-            $dataTwo =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '8h:00m','finished' => '9h:30m',];
+            $dataTwo =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '08:00','finished' => '09:30',];
             Classroom::updateOrCreate($dataTwo, $dataTwo);
 
-            $dataThree =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '10h:00m','finished' => '11h:30m',];
+            $dataThree =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '10:00','finished' => '11:30',];
             Classroom::updateOrCreate($dataThree, $dataThree);
 
-            $dataFour =  ['category_id' => $ligeiro->id, 'period' => 'AFTERNOON', 'starter' => '14h:00m','finished' => '15h:30m',];
+            $dataFour =  ['category_id' => $ligeiro->id, 'period' => 'AFTERNOON', 'starter' => '14:00','finished' => '15:30',];
             Classroom::updateOrCreate($dataFour, $dataFour);
 
-            $dataFive =  ['category_id' => $ligeiro->id, 'period' => 'AFTERNOON', 'starter' => '16h:00m','finished' => '17h:30m',];
+            $dataFive =  ['category_id' => $ligeiro->id, 'period' => 'AFTERNOON', 'starter' => '16:00','finished' => '17:30',];
             Classroom::updateOrCreate($dataFive, $dataFive);
         }
 
         $pesado = Category::where('name', CategorySeeder::PESADO['name'])->first();
         if (isset($pesado->id)) {
-            $dataOne =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '14h:00m','finished' => '15h:30m',];
+            $dataOne =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '14:00','finished' => '15:30',];
             Classroom::updateOrCreate($dataOne, $dataOne);
 
-            $dataTwo =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '16h:00m','finished' => '17h:30m',];
+            $dataTwo =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '16:00','finished' => '17:30',];
             Classroom::updateOrCreate($dataTwo, $dataTwo);
         }
 

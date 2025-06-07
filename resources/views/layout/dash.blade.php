@@ -72,7 +72,7 @@
     </aside>
 
     <div class="p-4 sm:ml-64">
-        <div class="p-2 rounded-lg bg-white shadow">
+        <div class="p-2 rounded-lg">
             @yield('body')
         </div>
     </div>

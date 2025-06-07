@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Exception;
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate();
-        return view('auth.category.index', compact('categories') );
+        $categories = Category::orderBy('created_at', 'desc')->paginate();
+        return view('auth.category.index', compact('categories'));
     }
 
     /**
@@ -29,33 +30,42 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-
+        try{
+            Category::create($request->all());
+            flash()->success('Categoria criado com successo');
+            return redirect()->route('categories.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return view('auth.category.form');
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        return view('auth.category.form');
+        $category = Category::find($id);
+        return view('auth.category.form', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
-        //
+        try{
+            $category = Category::find($id);
+            $category->update($request->all());
+            flash()->success('Categoria editado com successo');
+            return redirect()->route('categories.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 
     /**
@@ -63,6 +73,14 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $category = Category::find($id);
+            $category->delete();
+            flash()->success('Categoria eliminado com successo');
+            return redirect()->route('categories.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 }

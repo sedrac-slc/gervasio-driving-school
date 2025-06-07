@@ -20,4 +20,15 @@ class Classroom extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
+
+    public function period(){
+        switch($this->period){
+            case 'MORNING':
+                return 'Manhã';
+            case 'AFTERNOON':
+                return 'Tarde';
+            case 'NIGHT':
+                return 'Noite';
+        }
+    }
 }

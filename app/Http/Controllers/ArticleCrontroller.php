@@ -16,7 +16,7 @@ class ArticleCrontroller extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate();
+        $articles = Article::orderBy('created_at', 'desc')->paginate();
         return view('auth.article.index', compact('articles'));
     }
 
@@ -74,6 +74,14 @@ class ArticleCrontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $article = Article::find($id);
+            $article->delete();
+            flash()->success('Artigo eliminado com successo');
+            return redirect()->route('articles.index');
+        }catch(Exception){
+            flash()->error('Erro na operação');
+            return back();
+        }
     }
 }
