@@ -19,4 +19,8 @@ class Category extends Model
     public function classrooms() {
         return $this->hasMany(Classroom::class);
     }
+
+    public function vehicles() {
+        return $this->hasMany(Vehicle::class);
+    }
 }
