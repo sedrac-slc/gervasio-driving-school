@@ -21,6 +21,10 @@ class Classroom extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function enrolments() {
+        return $this->hasMany(Enrolment::class);
+    }
+
     public function period(){
         switch($this->period){
             case 'MORNING':

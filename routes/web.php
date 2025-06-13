@@ -20,8 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'auth'])->name('login');
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'password'])->name('profile.password');

@@ -8,6 +8,26 @@ use App\Models\{Classroom, Category};
 
 class ClassroomSeeder extends Seeder
 {
+    const LIGEIRO_MORNING_06H40_07H50 = [
+        'period' => 'MORNING', 'starter' => '06:40','finished' => '07:50',
+    ];
+
+    const LIGEIRO_MORNING_08H00_09H30 = [
+        'period' => 'MORNING', 'starter' => '08:00','finished' => '09:30',
+    ];
+
+    const LIGEIRO_MORNING_10H00_11H30 = [
+        'period' => 'MORNING', 'starter' => '10:00','finished' => '11:30',
+    ];
+
+    const PESADO_AFTERNOON_14H00_15H30 = [
+        'period' => 'AFTERNOON', 'starter' => '14:00','finished' => '15:30'
+    ];
+
+    const PESADO_AFTERNOON_16H00_17H30 = [
+        'period' => 'AFTERNOON', 'starter' => '16:00','finished' => '17:30'
+    ];
+
     /**
      * Run the database seeds.
      */
@@ -15,14 +35,14 @@ class ClassroomSeeder extends Seeder
     {
         $ligeiro = Category::where('name', CategorySeeder::LIGEIRO['name'])->first();
         if (isset($ligeiro->id)) {
-            $dataOne =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '06:40','finished' => '07:50',];
-            Classroom::updateOrCreate($dataOne, $dataOne);
+            $data = ['category_id' => $ligeiro->id, ...static::LIGEIRO_MORNING_06H40_07H50];
+            Classroom::updateOrCreate($data, $data);
 
-            $dataTwo =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '08:00','finished' => '09:30',];
-            Classroom::updateOrCreate($dataTwo, $dataTwo);
+            $data = ['category_id' => $ligeiro->id, ...static::LIGEIRO_MORNING_08H00_09H30];
+            Classroom::updateOrCreate($data, $data);
 
-            $dataThree =  ['category_id' => $ligeiro->id, 'period' => 'MORNING', 'starter' => '10:00','finished' => '11:30',];
-            Classroom::updateOrCreate($dataThree, $dataThree);
+            $data = ['category_id' => $ligeiro->id, ...static::LIGEIRO_MORNING_10H00_11H30];
+            Classroom::updateOrCreate($data, $data);
 
             $dataFour =  ['category_id' => $ligeiro->id, 'period' => 'AFTERNOON', 'starter' => '14:00','finished' => '15:30',];
             Classroom::updateOrCreate($dataFour, $dataFour);
@@ -33,11 +53,11 @@ class ClassroomSeeder extends Seeder
 
         $pesado = Category::where('name', CategorySeeder::PESADO['name'])->first();
         if (isset($pesado->id)) {
-            $dataOne =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '14:00','finished' => '15:30',];
-            Classroom::updateOrCreate($dataOne, $dataOne);
+            $data =  ['category_id' => $pesado->id, ...static::PESADO_AFTERNOON_14H00_15H30];
+            Classroom::updateOrCreate($data, $data);
 
-            $dataTwo =  ['category_id' => $pesado->id, 'period' => 'AFTERNOON', 'starter' => '16:00','finished' => '17:30',];
-            Classroom::updateOrCreate($dataTwo, $dataTwo);
+            $data =  ['category_id' => $pesado->id, ...static::PESADO_AFTERNOON_16H00_17H30];
+            Classroom::updateOrCreate($data, $data);
         }
 
     }
