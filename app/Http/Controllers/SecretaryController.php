@@ -91,8 +91,7 @@ class SecretaryController extends Controller
             $secretary->user->delete();
             flash()->success('Secretario eliminado com successo');
             return redirect()->route('secretaries.index');
-        }catch(Exception $e){
-            dd($e);
+        }catch(Exception){
             flash()->error('Erro na operação');
             return back();
         }

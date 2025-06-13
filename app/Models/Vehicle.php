@@ -11,6 +11,7 @@ class Vehicle extends Model
 
     protected $fillable = [
         'category_id',
+        'license_plate'
     ];
 
     public function category() {

@@ -40,11 +40,11 @@
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Secretario</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('instructors.index') }}"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Instrutor</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('students.index') }}"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Aluno</a>
                         </li>
                     </ul>
@@ -63,8 +63,26 @@
                 </li>
                 <li>
                     <a href="{{ route('classrooms.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-contact-book'></i>
+                        <i class='bxr bx-contact-book'></i>
                         <span class="ms-3">Turmas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('vehicles.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class='bxr bx-car'></i>
+                        <span class="ms-3">Veículos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('enrolments.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class='bxr  bx-user-square'></i>
+                        <span class="ms-3">Matrículas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('driving_lessons.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class='bxr  bx-toy-car'></i>
+                        <span class="ms-3">Aulas de condução</span>
                     </a>
                 </li>
             </ul>
