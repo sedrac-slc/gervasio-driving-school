@@ -13,7 +13,7 @@
             <x-input-field label="Email" name="email" value="{{ old('email') }}" placeholder="name@flowbite.com"/>
         </div>
         <div class="mb-5">
-            <x-input-field label="Senha" name="password" value="{{ old('password') }}"/>
+            <x-input-field label="Senha" type="password" name="password" value="{{ old('password') }}"/>
         </div>
         <div class="flex items-start mb-5">
             <div class="flex items-center h-5">

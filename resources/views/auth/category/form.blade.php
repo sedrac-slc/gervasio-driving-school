@@ -1,7 +1,7 @@
 @extends('layout.dash')
 @section('body')
     <x-link-back href="{{ route('categories.index') }}" />
-    <form class="max-w-sm mx-auto md:my-10" action="{{
+    <form class="max-w-sm mx-auto md:my-10 bg-white p-2 rounded-2xl" action="{{
         isset($category->id) ? route('categories.update', $category->id) : route('categories.store')
      }}" method="POST">
         @csrf
