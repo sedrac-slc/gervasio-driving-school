@@ -1,31 +1,22 @@
 @extends('layout.dash')
 @section('body')
-    <x-link-back href="{{ route('secretaries.index') }}" />
+    <x-link-back href="{{ route('enrolments.index') }}" />
     <form class="max-w-sm mx-auto md:my-5 bg-white p-2 rounded-2xl"
-        action="{{ isset($secretary->id) ? route('secretaries.update', $secretary->id) : route('secretaries.store') }}"
+        action="{{ isset($enrolment->id) ? route('enrolments.update', $enrolment->id) : route('enrolments.store') }}"
         method="POST">
         @csrf
-        @isset($secretary)
+        @isset($enrolment)
             @method('PUT')
-            <div class="text-xl mb-5">Editar secretario</div>
+            <div class="text-xl mb-5">Editar matricula</div>
         @else
-            <div class="text-xl mb-5">Criar secretario</div>
+            <div class="text-xl mb-5">Criar matricula</div>
         @endisset
         <div class="mb-5">
-            <x-input-field label="Digita o nome" name="name" value="{{ $secretary->user->name ?? old('name') }}" />
+            <x-input-field label="Digita turma" name="classroom" value="{{ $enrolment->classroom->category->name ?? old('name') }}" />
         </div>
         <div class="mb-5">
-            <x-input-field label="Digita o email" type="email" name="email"
-                value="{{ $secretary->user->email ?? old('email') }}" />
+            <x-input-field label="Digita estudante" name="student" value="{{ $enrolment->student->user->name ?? old('email') }}" />
         </div>
-        @if (!isset($secretary))
-            <div class="mb-5">
-                <x-input-field label="Digita a senha" type="password" name="password" value="{{ old('password') }}" />
-            </div>
-            <div class="mb-5">
-                <x-input-field label="Confirma a senha" type="password" name="confirm" value="{{ old('confirm') }}" />
-            </div>
-        @endif
         <x-submit-confirm />
     </form>
 @endsection
