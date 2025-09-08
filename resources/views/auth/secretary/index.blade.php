@@ -28,7 +28,7 @@
                         </td>
                         <td class="px-6 py-4 text-right">
                             <a href="{{ route('secretaries.edit', $secretary->id) }}" class="font-medium text-xl text-blue-600 dark:text-blue-500 hover:underline">
-                                <i class='bxr  bx-edit'></i>
+                                <i class='bx bx-edit'></i>
                             </a>
                         </td>
                         <td class="px-6 py-4 text-right">

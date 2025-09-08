@@ -22,10 +22,8 @@ class EnrolmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'price' => 'required',
-            'installment' => 'required',
-            'completed_installment' => 'required',
+            'classroom_id' => 'required',
+            'student_id' => 'required',
         ];
     }
 }

@@ -17,22 +17,26 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="/"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-home'> </i>
                         <span class="ms-3">Página inicial</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('profile') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-user-circle'> </i>
                         <span class="ms-3">Perfil</span>
                     </a>
                 </li>
                 <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                         <i class='bxr  bx-people-diversity'></i>
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Utilizador</span>
-                        <i class='bxr  bx-arrow-down-stroke-circle'  ></i>
+                        <i class='bxr  bx-arrow-down-stroke-circle'></i>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
@@ -50,37 +54,43 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('articles.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('articles.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-list-square'></i>
                         <span class="ms-3">Artigos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('categories.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('categories.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-categories'> </i>
                         <span class="ms-3">Categorias</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('classrooms.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('classrooms.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr bx-contact-book'></i>
                         <span class="ms-3">Turmas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('vehicles.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('vehicles.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr bx-car'></i>
                         <span class="ms-3">Veículos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('enrolments.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('enrolments.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-user-square'></i>
                         <span class="ms-3">Matrículas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('driving_lessons.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('driving_lessons.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class='bxr  bx-toy-car'></i>
                         <span class="ms-3">Aulas de condução</span>
                     </a>
@@ -91,6 +101,15 @@
 
     <div class="p-4 sm:ml-64 bg-gray-300 h-screen">
         <div class="p-2 rounded-lg">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('body')
         </div>
     </div>

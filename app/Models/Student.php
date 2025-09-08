@@ -21,4 +21,8 @@ class Student extends Model
         return $this->hasMany(Enrolment::class);
     }
 
+    public function __toString() {
+        return $this->user->name;
+    }
+
 }

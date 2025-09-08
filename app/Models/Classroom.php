@@ -35,4 +35,8 @@ class Classroom extends Model
                 return 'Noite';
         }
     }
+
+    public function __toString() {
+        return $this->category->name.", ". $this->period() . " | ".$this->starter." à ".$this->finished;
+    }
 }
