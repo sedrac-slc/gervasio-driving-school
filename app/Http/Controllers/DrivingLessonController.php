@@ -49,8 +49,8 @@ class DrivingLessonController extends Controller
      */
     public function edit(string $id)
     {
-        $classroom = DrivingLesson::find($id);
-        return view('auth.driving_lesson.form', compact('classroom'));
+        $drivingLesson = DrivingLesson::find($id);
+        return view('auth.driving_lesson.form', compact('drivingLesson'));
     }
 
     /**
@@ -59,10 +59,10 @@ class DrivingLessonController extends Controller
     public function update(DrivingLessonRequest $request, string $id)
     {
         try{
-            $classroom = DrivingLesson::find($id);
-            $classroom->update($request->all());
+            $drivingLesson = DrivingLesson::find($id);
+            $drivingLesson->update($request->all());
             flash()->success('Aulas de condução editado com successo');
-            return redirect()->route('drivingLessons.index');
+            return redirect()->route('driving_lessons.index');
         }catch(Exception){
             flash()->error('Erro na operação');
             return back();
@@ -75,10 +75,10 @@ class DrivingLessonController extends Controller
     public function destroy(string $id)
     {
         try{
-            $classroom = DrivingLesson::find($id);
-            $classroom->delete();
+            $drivingLesson = DrivingLesson::find($id);
+            $drivingLesson->delete();
             flash()->success('Aulas de condução eliminado com successo');
-            return redirect()->route('drivingLessons.index');
+            return redirect()->route('driving_lessons.index');
         }catch(Exception){
             flash()->error('Erro na operação');
             return back();
