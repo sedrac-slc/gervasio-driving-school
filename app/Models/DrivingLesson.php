@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class DrivingLesson extends Model
 {
     use HasUuids;
+
+    protected $fillable = ['instructor_id', 'student_id', 'vehicle_id', 'starter', 'finished'];
+
+    public function instructor()
+    {
+        return $this->belongsTo(Instructor::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
 }

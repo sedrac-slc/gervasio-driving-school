@@ -21,6 +21,10 @@ class Student extends Model
         return $this->hasMany(Enrolment::class);
     }
 
+    public function drivingLessons() {
+        return $this->hasMany(DrivingLesson::class);
+    }
+
     public function __toString() {
         return $this->user->name;
     }

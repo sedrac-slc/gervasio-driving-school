@@ -17,4 +17,8 @@ class Instructor extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function drivingLessons() {
+        return $this->hasMany(DrivingLesson::class);
+    }
+
 }
