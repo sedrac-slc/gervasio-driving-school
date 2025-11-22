@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{
     LoginController,
+    LessonController,
     ProfileController,
+    PaymentController,
     VehicleController,
     StudentController,
     CategoryController,
@@ -29,9 +31,10 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'upate'])->name('profile.upate');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-
+    Route::resource('lessons', LessonController::class);
     Route::resource('students', StudentController::class);
     Route::resource('vehicles', VehicleController::class);
+    Route::resource('payments', PaymentController::class);
     Route::resource('articles', ArticleCrontroller::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('enrolments', EnrolmentController::class);
@@ -39,6 +42,14 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('secretaries', SecretaryController::class);
     Route::resource('instructors', InstructorController::class);
     Route::resource('driving_lessons', DrivingLessonController::class);
+
+    Route::post('lessons-search', [LessonController::class, 'search'])->name('lessons.search');
+    Route::post('payments-search', [PaymentController::class, 'search'])->name('payments.search');
+    Route::post('articles-search', [ArticleCrontroller::class, 'search'])->name('articles.search');
+    Route::post('enrolments-search', [EnrolmentController::class, 'search'])->name('enrolments.search');
+    Route::post('classrooms-search', [ClassroomController::class, 'search'])->name('classrooms.search');
+
+    Route::get('enrolments-search-input', [EnrolmentController::class, 'searchInput'])->name('enrolments.search-input');
 });
 
 

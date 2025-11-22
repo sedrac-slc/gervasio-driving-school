@@ -14,4 +14,8 @@ class Article extends Model
         "price"
     ];
 
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
 }

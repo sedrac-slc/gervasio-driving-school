@@ -1,4 +1,6 @@
-@extends('layout.default')
+@extends('layout.default', [
+    'classe' => 'bg-gray-200'
+])
 @section('content')
     <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
         aria-controls="sidebar-multi-level-sidebar" type="button"
@@ -12,21 +14,21 @@
     </button>
 
     <aside id="sidebar-multi-level-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 border-r border-r-[#ccc]"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="/"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-home'> </i>
+                        <i class="fa fa-home" aria-hidden="true"></i>
                         <span class="ms-3">Página inicial</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('profile') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-user-circle'> </i>
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                         <span class="ms-3">Perfil</span>
                     </a>
                 </li>
@@ -34,9 +36,9 @@
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <i class='bxr  bx-people-diversity'></i>
+                        <i class="fa fa-users" aria-hidden="true"></i>
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Utilizador</span>
-                        <i class='bxr  bx-arrow-down-stroke-circle'></i>
+                        <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
@@ -56,51 +58,151 @@
                 <li>
                     <a href="{{ route('articles.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-list-square'></i>
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <span class="ms-3">Artigos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('payments.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <span class="ms-3">Pagamentos</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('categories.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-categories'> </i>
+                        <i class="fa fa-braille" aria-hidden="true"></i>
                         <span class="ms-3">Categorias</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('classrooms.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr bx-contact-book'></i>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         <span class="ms-3">Turmas</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('vehicles.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr bx-car'></i>
+                        <i class="fa fa-car" aria-hidden="true"></i>
                         <span class="ms-3">Veículos</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('enrolments.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-user-square'></i>
+                        <i class="fa fa-address-card" aria-hidden="true"></i>
                         <span class="ms-3">Matrículas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('driving_lessons.index') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class='bxr  bx-toy-car'></i>
-                        <span class="ms-3">Aulas de condução</span>
-                    </a>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-lesson" data-collapse-toggle="dropdown-lesson">
+                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Aulas</span>
+                        <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+                    </button>
+                    <ul id="dropdown-lesson" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="{{ route('lessons.index') }}"
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Lições</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('driving_lessons.index') }}"
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Condução</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </aside>
 
-    <div class="p-4 sm:ml-64 bg-gray-300 h-screen">
-        <div class="p-2 rounded-lg">
+    <div class="sm:ml-64 h-screen ">
+
+        <nav class="hidden sm:flex h-15 border-b bg-white border-b-[#ccc] justify-between px-10 items-center mb-5">
+            <div>
+                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li class="inline-flex items-center">
+                        <a href="#"
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span class="ml-1">Painel administrativo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 " aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="{{ route('profile') }}"
+                                class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Perfil</a>
+                        </div>
+                    </li>
+                    @isset($panel)
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 " aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                                <a href="#"
+                                    class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{ $panel }}</a>
+                            </div>
+                        </li>
+                    @endisset
+                </ol>
+            </div>
+            <div class="flex items-center justify-center gap-5 md:gap-8">
+                <div>
+                    <label class="inline-flex items-center cursor-pointer justify-center h-full">
+                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300 mr-2">Escuro</span>
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div
+                            class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
+                        </div>
+                    </label>
+                </div>
+                <div class="text-2xl">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
+                <div>
+                    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                        data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer"
+                        src="/img/ferr-studio-G2Qjx1y9aAM-unsplash.jpg" alt="User dropdown">
+                    <div id="userDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                            <div>Bonnie Green</div>
+                            <div class="font-medium truncate">{{ auth()->user()->email }}</div>
+                        </div>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                            <li>
+                                <a href="{{ route('profile') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Perfil</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('profile') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Senha</a>
+                            </li>
+                        </ul>
+                        <div class="py-1">
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="rounded-lg p-4">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

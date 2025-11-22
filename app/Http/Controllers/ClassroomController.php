@@ -11,13 +11,33 @@ use Exception;
 
 class ClassroomController extends Controller
 {
+    public function panel($classrooms)
+    {
+        $panel = 'Turmas';
+        return view('auth.classroom.index', compact('classrooms'));
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $classrooms = Classroom::with('category')->orderBy('created_at', 'desc')->paginate();
-        return view('auth.classroom.index', compact('classrooms'));
+        $classrooms = Classroom::with('category', 'enrolments')
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($classrooms);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $classrooms = Classroom::with('category', 'enrolments')
+            ->orderBy('created_at', 'desc')
+            ->paginate();;
+        return $this->panel($classrooms);
     }
 
     /**

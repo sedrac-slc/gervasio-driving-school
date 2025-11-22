@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('student_id');
+            $table->string('enrolment_id');
             $table->string('article_id');
             $table->timestamps();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('enrolment_id')->references('id')->on('enrolments');
             $table->foreign('article_id')->references('id')->on('articles');
         });
     }

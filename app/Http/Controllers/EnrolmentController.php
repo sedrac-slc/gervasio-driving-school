@@ -32,16 +32,15 @@ class EnrolmentController extends Controller
      */
     public function store(EnrolmentRequest $request)
     {
-        try{
+        try {
             Enrolment::create($request->all());
             flash()->success('Matricula criado com successo');
             return redirect()->route('enrolments.index');
-        }catch(Exception){
+        } catch (Exception) {
             flash()->error('Erro na operação');
             return back();
         }
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -57,12 +56,12 @@ class EnrolmentController extends Controller
      */
     public function update(EnrolmentRequest $request, string $id)
     {
-        try{
+        try {
             $enrolment = Enrolment::find($id);
             $enrolment->update($request->all());
             flash()->success('Matricula editado com successo');
             return redirect()->route('enrolments.index');
-        }catch(Exception){
+        } catch (Exception) {
             flash()->error('Erro na operação');
             return back();
         }
@@ -73,14 +72,36 @@ class EnrolmentController extends Controller
      */
     public function destroy(string $id)
     {
-        try{
+        try {
             $enrolment = Enrolment::find($id);
             $enrolment->delete();
             flash()->success('Matricula eliminado com successo');
             return redirect()->route('enrolments.index');
-        }catch(Exception){
+        } catch (Exception) {
             flash()->error('Erro na operação');
             return back();
         }
+    }
+
+    public function searchInput(Request $request)
+    {
+        $term = $request->input('search','');
+        $limit = $request->input('limit', 10);
+        $enrolments = Enrolment::with(['classroom', 'student'])
+            ->with(['classroom.category', 'student.user'])
+            ->where('code', 'LIKE', "%{$term}%")
+            ->orWhereHas('student.user', function ($query) use ($term) {
+                $query->where('name', 'LIKE', "%{$term}%");
+            })
+            ->orWhereHas('classroom.category', function ($query) use ($term) {
+                $query->where('name', 'LIKE', "%{$term}%");
+            })
+            ->orWhereHas('classroom', function ($query) use ($term) {
+                $query->where('period', 'LIKE', "%{$term}%");
+            })
+            ->limit($limit)
+            ->get();
+
+        return view('auth.enrolment.partials.search-results', compact('enrolments'));
     }
 }

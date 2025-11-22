@@ -12,6 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        \App\Models\User::updateOrCreate(['email' => 'admin@gmail.com' ], [
+            'password' => \Illuminate\Support\Facades\Hash::make('12345678'),
+            'email' => 'admin@gmail.com',
+        ]);
+
         $this->call([
             SecretarySeeder::class,
             CategorySeeder::class,

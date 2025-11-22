@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::orderBy('created_at', 'desc')->paginate();
+        $students = Student::with('enrolments')->orderBy('created_at', 'desc')->paginate();
         return view('auth.student.index', compact('students'));
     }
 

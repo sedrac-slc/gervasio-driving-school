@@ -11,7 +11,7 @@
                     <th scope="col" class="px-6 py-3">
                         Email
                     </th>
-                    <th colspan="2" scope="col" class="px-6 py-3 text-center">
+                    <th colspan="1" scope="col" class="px-6 py-3 text-center">
                         <span>Acção</span>
                     </th>
                 </tr>
@@ -26,12 +26,8 @@
                         <td class="px-6 py-4">
                             {{ $secretary->user->email }}
                         </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="{{ route('secretaries.edit', $secretary->id) }}" class="font-medium text-xl text-blue-600 dark:text-blue-500 hover:underline">
-                                <i class='bx bx-edit'></i>
-                            </a>
-                        </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-center flex items-center gap-10 justify-center">
+                            <x-link-edit href="{{ route('secretaries.edit', $secretary->id) }}"/>
                             <x-link-delete href="{{ route('secretaries.destroy', $secretary->id) }}"/>
                         </td>
                     </tr>

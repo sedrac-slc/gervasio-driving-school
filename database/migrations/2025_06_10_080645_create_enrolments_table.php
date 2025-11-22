@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('enrolments', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('code')->unique();
             $table->string('classroom_id');
             $table->string('student_id');
             $table->timestamps();

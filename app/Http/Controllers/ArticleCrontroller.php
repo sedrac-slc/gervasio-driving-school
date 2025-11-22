@@ -11,13 +11,31 @@ use Exception;
 
 class ArticleCrontroller extends Controller
 {
+    public function panel($articles)
+    {
+        $panel = 'Artigos';
+        return view('auth.article.index', compact('articles', 'panel'));
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')->paginate();
-        return view('auth.article.index', compact('articles'));
+        return $this->panel($articles);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $articles = Article::where('name','like',"%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($articles);
     }
 
     /**

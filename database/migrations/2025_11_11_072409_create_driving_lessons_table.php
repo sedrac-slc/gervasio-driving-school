@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('driving_lessons', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('instructor_id');
-            $table->string('student_id');
+            $table->string('enrolment_id');
             $table->string('vehicle_id');
             $table->time('starter');
             $table->time('finished');
             $table->timestamps();
             $table->foreign('instructor_id')->references('id')->on('instructors');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('enrolment_id')->references('id')->on('enrolments');
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
         });
     }

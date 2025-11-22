@@ -12,8 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <link href="{{ asset('flowbite.min.css') }}" rel="stylesheet" />
 
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
-    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <link href="{{ asset('font-awesome.css') }}" rel="stylesheet" />
 
 
     <!-- Styles / Scripts -->
@@ -1525,9 +1524,10 @@
     @yield('style')
 </head>
 
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18]">
+<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] @isset($classe) {{ $classe}} @endisset">
     @yield('content')
     <script src="{{ asset('flowbite.min.js') }}"></script>
+    <script src="{{ asset('htmx.min.js') }}"></script>
 </body>
 
 </html>

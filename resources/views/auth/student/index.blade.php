@@ -27,9 +27,7 @@
                             {{ $student->user->email }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <a href="{{ route('students.edit', $student->id) }}" class="font-medium text-xl text-blue-600 dark:text-blue-500 hover:underline">
-                                <i class='bxr  bx-edit'></i>
-                            </a>
+                            <x-link-edit href="{{ route('students.edit', $student->id) }}"/>
                         </td>
                         <td class="px-6 py-4 text-right">
                             <x-link-delete href="{{ route('students.destroy', $student->id) }}"/>
