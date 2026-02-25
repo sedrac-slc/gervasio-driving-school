@@ -10,13 +10,30 @@ use Exception;
 
 class SecretaryController extends Controller
 {
+    public function panel($secretaries)
+    {
+        $panel = 'Secretarios';
+        return view('auth.secretary.index', compact('secretaries', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $secretaries = Secretary::orderBy('created_at', 'desc')->paginate();
-        return view('auth.secretary.index', compact('secretaries'));
+        return $this->panel($secretaries);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $secretaries = Secretary::with('user')
+            ->whereHas('user',
+                fn($q) => $q->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")
+            )
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($secretaries);
     }
 
     /**

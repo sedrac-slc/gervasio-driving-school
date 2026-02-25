@@ -6,10 +6,12 @@
 </div>
 
 <script>
-    document.getElementById('btn-create').addEventListener('click', () => {
+    function clearInputForm() {
         const form = document.getElementById('form-action');
         const panel = document.querySelector('[data-accordion-target="#accordion-collapse-body-1"] span')
         form.action = "{{ $href }}";
         panel.innerHTML = "Adicionar"
-    })
+    }
+
+    document.getElementById('btn-create').addEventListener('click', clearInputForm)
 </script>

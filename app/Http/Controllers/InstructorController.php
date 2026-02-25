@@ -10,13 +10,30 @@ use Exception;
 
 class InstructorController extends Controller
 {
+    public function panel($instructors)
+    {
+        $panel = 'Instrutor';
+        return view('auth.instructor.index', compact('instructors', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $instructors = Instructor::orderBy('created_at', 'desc')->paginate();
-        return view('auth.instructor.index', compact('instructors'));
+        return $this->panel($instructors);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $instructors = Instructor::with('user')
+            ->whereHas('user',
+                fn($q) => $q->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")
+            )
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($instructors);
     }
 
     /**

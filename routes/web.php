@@ -51,6 +51,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('categories-search', [CategoryController::class, 'search'])->name('categories.search');
     Route::post('enrolments-search', [EnrolmentController::class, 'search'])->name('enrolments.search');
     Route::post('classrooms-search', [ClassroomController::class, 'search'])->name('classrooms.search');
+    Route::post('secretaries-search', [SecretaryController::class, 'search'])->name('secretaries.search');
+    Route::post('instructors-search', [InstructorController::class, 'search'])->name('instructors.search');
 
     Route::get('enrolments-search-input', [EnrolmentController::class, 'searchInput'])->name('enrolments.search-input');
 });
