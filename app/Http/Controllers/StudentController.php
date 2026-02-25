@@ -10,13 +10,29 @@ use Exception;
 
 class StudentController extends Controller
 {
+    public function panel($students)
+    {
+        $panel = 'Estudante';
+        return view('auth.student.index', compact('students', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $students = Student::with('enrolments')->orderBy('created_at', 'desc')->paginate();
-        return view('auth.student.index', compact('students'));
+        return $this->panel($students);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $students = Student::with('user', 'enrolments')
+            ->whereHas('user',
+                fn($q) => $q->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%")
+            )->orderBy('created_at', 'desc')
+             ->paginate();
+        return $this->panel($students);
     }
 
     /**
