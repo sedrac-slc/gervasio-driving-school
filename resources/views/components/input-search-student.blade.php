@@ -1,12 +1,12 @@
 <div>
-    <label for="search-input-enrolement" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Escolher matricula
+    <label for="search-input-student" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Escolher estudante
     </label>
     <div class="flex gap-1 mt-1">
-        <input type="search" id="search-input-enrolement" name="search"
+        <input type="search" id="search-input-student" name="search"
             class="block w-full p-2.5 text-sm text-gray-900 border rounded-lg bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             placeholder="Clica no botão" required disabled />
-        <button data-modal-target="default-modal-enrolement" data-modal-toggle="default-modal-enrolement"
+        <button data-modal-target="default-modal-student" data-modal-toggle="default-modal-student"
             class="text-white bg-blue-700 rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-blue-800" type="button">
             Pesquisar
         </button>
@@ -14,17 +14,17 @@
 </div>
 
 <!-- Input hidden para guardar o ID selecionado -->
-<input type="hidden" id="enrolment_id" name="enrolment_id" />
+<input type="hidden" id="student_id" name="student_id" />
 
 <!-- Main modal -->
-<div id="default-modal-enrolement" tabindex="-1" aria-hidden="true"
+<div id="default-modal-student" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full md:max-w-5xl max-h-full">
         <div class="relative bg-white border rounded-lg shadow-sm p-4 md:p-6">
             <!-- Modal header -->
             <div class="flex items-center justify-between border-b pb-4">
-                <h3 class="text-lg font-medium">Pesquisar matricula</h3>
-                <button type="button" data-modal-hide="default-modal-enrolement"
+                <h3 class="text-lg font-medium">Pesquisar estudante</h3>
+                <button type="button" data-modal-hide="default-modal-student"
                     class="text-gray-500 hover:bg-gray-200 rounded-lg w-9 h-9 flex justify-center items-center">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -35,7 +35,7 @@
             <!-- Modal body -->
             <div class="py-4">
                 <!-- Input de busca com HTMX -->
-                <input type="search" id="search-request" name="search" hx-get="{{ route('enrolments.search-input') }}"
+                <input type="search" id="search-request" name="search" hx-get="{{ route('students.search-input') }}"
                     hx-trigger="keyup changed delay:300ms" hx-target="#search-results" hx-indicator="#search-spinner"
                     class="block w-full p-4 text-sm border rounded-lg bg-gray-50"
                     placeholder="Digite código, nome do estudante..." />
@@ -53,12 +53,8 @@
                     <thead class="text-xs uppercase bg-gray-50">
                         <tr>
                             <th class="px-6 py-3">#</th>
-                            <th class="px-6 py-3">Código</th>
-                            <th class="px-6 py-3">Categoria</th>
-                            <th class="px-6 py-3">Estudante</th>
-                            <th class="px-6 py-3">Período</th>
-                            <th class="px-6 py-3">Hora começo</th>
-                            <th class="px-6 py-3">Hora término</th>
+                            <th class="px-6 py-3">Nome</th>
+                            <th class="px-6 py-3">Email</th>
                             <th class="px-6 py-3">Ação</th>
                         </tr>
                     </thead>
@@ -70,11 +66,11 @@
 
             <!-- Modal footer -->
             <div class="flex items-center border-t pt-4 space-x-4">
-                <button data-modal-hide="default-modal-enrolement" type="button"
+                <button data-modal-hide="default-modal-student" type="button"
                     class="text-white bg-blue-700 rounded-lg px-4 py-2.5 text-sm font-medium">
                     Confirmar
                 </button>
-                <button data-modal-hide="default-modal-enrolement" type="button"
+                <button data-modal-hide="default-modal-student" type="button"
                     class="text-gray-700 bg-gray-200 rounded-lg px-4 py-2.5 text-sm font-medium">
                     Cancelar
                 </button>
@@ -84,12 +80,12 @@
 </div>
 
 <script>
-    function selectEnrolment(id, code) {
-        document.getElementById('enrolment_id').value = id;
-        document.getElementById('search-input-enrolement').value = code;
+    function selectStudent(id, name) {
+        document.getElementById('student_id').value = id;
+        document.getElementById('search-input-student').value = name;
 
-        const modalEl = document.getElementById('default-modal-enrolement');
-        const modal = FlowbiteInstances.getInstance('Modal', 'default-modal-enrolement');
+        const modalEl = document.getElementById('default-modal-student');
+        const modal = FlowbiteInstances.getInstance('Modal', 'default-modal-student');
 
         if (modal) {
             modal.hide();

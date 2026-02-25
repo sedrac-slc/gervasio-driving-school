@@ -11,7 +11,7 @@
         <td class="px-6 py-4">
             <button type="button"
                 onclick="selectEnrolment('{{ $enrolment->id }}', '{{ $enrolment->code }}')"
-                data-modal-hide="default-modal"
+                data-modal-hide="default-modal-enrolement"
                 class="text-blue-600 hover:underline text-sm">
                 Selecionar
             </button>

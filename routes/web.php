@@ -55,6 +55,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('secretaries-search', [SecretaryController::class, 'search'])->name('secretaries.search');
     Route::post('instructors-search', [InstructorController::class, 'search'])->name('instructors.search');
 
+    Route::get('students-search-input', [StudentController::class, 'searchInput'])->name('students.search-input');
     Route::get('enrolments-search-input', [EnrolmentController::class, 'searchInput'])->name('enrolments.search-input');
 });
 

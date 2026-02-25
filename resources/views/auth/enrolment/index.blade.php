@@ -75,7 +75,7 @@
                                 <td class="px-6 py-4">
                                     {{ $enrolment->classroom->category->name }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4" id="table-user-name-{{ $enrolment->id }}" data-id="{{ $enrolment->student->id }}">
                                     {{ $enrolment->student->user->name }}
                                 </td>
                                 <td class="px-6 py-4">
@@ -116,22 +116,18 @@
 
             const id = link.getAttribute('data-json');
             const form = document.getElementById('form-action');
-            const nameInput = form.querySelector('input[name="name"]');
-            const priceInput = form.querySelector('input[name="price"]');
-            const installmentInput = form.querySelector('input[name="installment"]');
-            const completedInstallmentInput = form.querySelector('input[name="completed_installment"]');
-
-            if (nameInput) nameInput.value = document.querySelector(`#table-name-${id}`).innerHTML.trim() || '';
-            if (priceInput) priceInput.value = parseFloat(document.querySelector(`#table-price-${id}`).innerHTML.trim()) ||
-                '';
-            if (installmentInput) installmentInput.value = parseFloat(document.querySelector(`#table-installment-${id}`)
-                .innerHTML.trim()) || '';
-            if (completedInstallmentInput) completedInstallmentInput.value = parseFloat(document.querySelector(
-                `#table-completed_installment-${id}`).innerHTML.trim()) || '';
+            const enrolementInput = form.querySelector('input[name="search"]');
 
             form.action = link.getAttribute('data-url');
 
             const methodInput = form.querySelector('input[name="_method"]');
+
+            const studentInput = document.querySelector('#search-input-student');
+            if (studentInput) {
+                const item2 =  document.querySelector(`#table-user-name-${id}`)
+                if(item2) document.getElementById('student_id').value = item2.getAttribute('data-id');
+                studentInput.value = item2.innerHTML.trim() || ''
+            }
 
             if (methodInput) {
                 methodInput.value = 'PUT';

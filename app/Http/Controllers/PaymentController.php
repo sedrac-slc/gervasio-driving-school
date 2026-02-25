@@ -34,8 +34,10 @@ class PaymentController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $payments = Payment::with('enrolment', 'article')
-            ->where('name','like',"%{$search}%")
+        $payments = Payment::with('enrolment.student.user', 'article')
+            ->whereHas('enrolment', fn($q) => $q->where('code', 'like', "%{$search}%"))
+            ->orWhereHas('article', fn($q) => $q->where('name', 'like', "%{$search}%"))
+            ->orWhereHas('enrolment.student.user', fn($q) => $q->where('name', 'like', "%{$search}%"))
             ->orderBy('created_at', 'desc')
             ->paginate();
         return $this->panel($payments);

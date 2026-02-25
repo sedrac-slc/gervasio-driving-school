@@ -22,7 +22,8 @@ class PaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-
+            'enrolment_id' => 'required',
+            'article_id' => 'required'
         ];
     }
 }

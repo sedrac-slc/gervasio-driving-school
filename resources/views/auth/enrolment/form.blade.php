@@ -1,12 +1,10 @@
 @php
     use App\Models\Classroom;
     use App\Models\Student;
-
     $classrooms = Classroom::all();
-    $students = Student::all();
-
+    //$students = Student::all();
 @endphp
-<form class="bg-white p-2 rounded-2xl" action="{{ route('enrolments.store') }}" method="POST">
+<form class="bg-white p-2 rounded-2xl" action="{{ route('enrolments.store') }}" method="POST" id="form-action">
     @csrf
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
         <div>
@@ -19,7 +17,10 @@
                 @endforeach
             </select>
         </div>
-        <div>
+
+        <x-input-search-student/>
+
+        {{-- <div>
             <label for="student_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o
                 estudante</label>
             <select id="student_id" name="student_id" value="{{ $enrolment->student->id ?? 0 }}"
@@ -28,7 +29,7 @@
                     <option value="{{ $student->id }}">{{ $student }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
     </div>
     <x-submit-confirm />
 </form>

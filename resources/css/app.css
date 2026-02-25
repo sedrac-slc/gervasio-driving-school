@@ -11,3 +11,21 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+    display: flex;
+}
+
+#table-overlay {
+    display: none;
+}
+
+.htmx-request #table-overlay,
+.htmx-request.htmx-indicator#table-overlay {
+    display: flex;
+}

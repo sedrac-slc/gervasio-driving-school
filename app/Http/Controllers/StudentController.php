@@ -112,4 +112,16 @@ class StudentController extends Controller
             return back();
         }
     }
+
+    public function searchInput(Request $request)
+    {
+        $term = $request->input('search','');
+        $limit = $request->input('limit', 10);
+        $students = Student::with('user')
+            ->whereHas('user', fn($q) => $q->where('name', 'like', "%{$term}%")->orWhere('email', 'like', "%{$term}%"))
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get();
+        return view('auth.student.partials.search-results', compact('students'));
+    }
 }
