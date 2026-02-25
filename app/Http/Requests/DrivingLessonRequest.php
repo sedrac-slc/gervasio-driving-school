@@ -22,8 +22,9 @@ class DrivingLessonRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'enrolment_id' => 'required',
             'instructor_id' => 'required',
-            'student_id' => 'required',
+            'lesson_id' => 'required',
             'vehicle_id' => 'required',
         ];
     }

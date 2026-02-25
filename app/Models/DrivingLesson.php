@@ -9,16 +9,21 @@ class DrivingLesson extends Model
 {
     use HasUuids;
 
-    protected $fillable = ['instructor_id', 'student_id', 'vehicle_id', 'starter', 'finished'];
+    protected $fillable = ['id', 'lesson_id', 'enrolment_id', 'instructor_id', 'student_id', 'vehicle_id', 'starter', 'finished'];
 
     public function instructor()
     {
         return $this->belongsTo(Instructor::class);
     }
 
-    public function student()
+    public function enrolment()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Enrolment::class);
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
     }
 
     public function vehicle()

@@ -52,7 +52,7 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $lesson->topic }}
                                 </th>
-                                <td class="px-6 py-4" id="table-type-{{$lesson->id}}">
+                                <td class="px-6 py-4" id="table-type-{{$lesson->id}}" data-type="{{$lesson->type}}">
                                     {{ $lesson->labelTopic() }}
                                 </td>
                                 <td class="px-6 py-4 text-center flex items-center gap-10 justify-center">
@@ -88,7 +88,10 @@
             const typeSelect = form.querySelector('select[name="type"]');
 
             if (topicInput) topicInput.value = document.querySelector(`#table-topic-${id}`).innerHTML.trim() || '';
-            if (typeSelect) typeSelect.value = document.querySelector(`#table-type-${id}`).innerHTML.trim() || '';
+            if (typeSelect) {
+                const item = document.querySelector(`#table-type-${id}`);
+                if(item) { typeSelect.value = item.getAttribute('data-type') || ''; }
+            }
 
             form.action = link.getAttribute('data-url');
 

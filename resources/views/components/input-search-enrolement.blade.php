@@ -1,9 +1,9 @@
 <div>
-    <label for="search-input-enrolement" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">
+    <label for="search-input-enrolment" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Escolher matricula
     </label>
     <div class="flex gap-1 mt-1">
-        <input type="search" id="search-input-enrolement" name="search"
+        <input type="search" id="search-input-enrolment" name="search"
             class="block w-full p-2.5 text-sm text-gray-900 border rounded-lg bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             placeholder="Clica no botão" required disabled />
         <button data-modal-target="default-modal-enrolement" data-modal-toggle="default-modal-enrolement"
@@ -86,7 +86,7 @@
 <script>
     function selectEnrolment(id, code) {
         document.getElementById('enrolment_id').value = id;
-        document.getElementById('search-input-enrolement').value = code;
+        document.getElementById('search-input-enrolment').value = code;
 
         const modalEl = document.getElementById('default-modal-enrolement');
         const modal = FlowbiteInstances.getInstance('Modal', 'default-modal-enrolement');
@@ -98,6 +98,16 @@
             modalEl.setAttribute('aria-hidden', 'true');
             modalEl.removeAttribute('aria-modal');
             document.body.classList.remove('overflow-hidden');
+        }
+    }
+
+    function onEditEnrolment(id) {
+        const enrolementInput = document.querySelector('#search-input-enrolment');
+        console.log(enrolementInput)
+        if (enrolementInput) {
+            const item2 = document.querySelector(`#table-enrolment-code-${id}`)
+            if (item2) document.getElementById('enrolment_id').value = item2.getAttribute('data-id');
+            enrolementInput.value = item2.innerHTML.trim() || ''
         }
     }
 </script>

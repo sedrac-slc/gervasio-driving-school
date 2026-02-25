@@ -96,4 +96,13 @@
             document.body.classList.remove('overflow-hidden');
         }
     }
+
+    function onEditStudent(id) {
+        const studentInput = document.querySelector('#search-input-student');
+        if (studentInput) {
+            const item2 = document.querySelector(`#table-user-name-${id}`)
+            if (item2) document.getElementById('student_id').value = item2.getAttribute('data-id');
+            studentInput.value = item2.innerHTML.trim() || ''
+        }
+    }
 </script>

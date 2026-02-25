@@ -1,32 +1,27 @@
-@extends('layout.dash')
-@section('body')
-    <x-link-back href="{{ route('driving_lessons.index') }}" />
-    <form class="max-w-sm mx-auto md:my-5 bg-white p-2 rounded-2xl" action="{{
-        isset($drivingLesson->id) ? route('driving_lessons.update', $drivingLesson->id) : route('driving_lessons.store')
-     }}" method="POST">
-        @csrf
-        @isset($drivingLesson)
-            @method('PUT')
-            <div class="text-xl mb-5">Editar aula de condução</div>
-        @else
-            <div class="text-xl mb-5">Criar aula de condução</div>
-        @endisset
-        <div class="mb-5">
-            <x-select-instructor/>
+<form class="bg-white p-2 rounded-2xl" action="{{ route('driving_lessons.store') }}" method="POST" id="form-action">
+    @csrf
+    @method('POST')
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
+        <div>
+            <x-select-lesson-topic-driver />
         </div>
-        <div class="mb-5">
-            <x-select-student/>
+        <div>
+            <x-input-search-enrolement/>
         </div>
-        <div class="mb-5">
-            <x-select-vehicle/>
+        <div>
+            <x-select-instructor />
         </div>
-        <div class="mb-5">
-            <x-input-field label="Hora começo" type="time" name="starter" value="{{ isset($drivingLesson->starter) ? format_time($drivingLesson->starter) : old('starter') }}"/>
+        <div>
+            <x-select-vehicle />
         </div>
-        <div class="mb-5">
-            <x-input-field label="Hora termino" type="time" name="finished" value="{{ isset($drivingLesson->finished) ? format_time($drivingLesson->finished) : old('finished') }}"/>
+        <div>
+            <x-input-field label="Hora começo" type="time" name="starter"
+                value="{{ isset($drivingLesson->starter) ? format_time($drivingLesson->starter) : old('starter') }}" />
         </div>
-        <x-submit-confirm/>
-    </form>
-@endsection
-
+        <div>
+            <x-input-field label="Hora termino" type="time" name="finished"
+                value="{{ isset($drivingLesson->finished) ? format_time($drivingLesson->finished) : old('finished') }}" />
+        </div>
+    </div>
+    <x-submit-confirm />
+</form>

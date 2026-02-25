@@ -11,13 +11,30 @@ use Exception;
 
 class DrivingLessonController extends Controller
 {
+    public function panel($drivingLessons)
+    {
+        $panel = 'Aula de condução';
+        return view('auth.driving_lesson.index', compact('drivingLessons', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $drivingLessons = DrivingLesson::orderBy('created_at', 'desc')->paginate();
-        return view('auth.driving_lesson.index', compact('drivingLessons'));
+        $drivingLessons = DrivingLesson::with('enrolment.student.user', 'lesson')
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($drivingLessons);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $drivingLessons = DrivingLesson::with('enrolment.student.user', 'lesson')
+            ->where('topic','like',"%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($drivingLessons);
     }
 
     /**

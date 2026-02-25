@@ -103,13 +103,6 @@
                 if(item1) selectArticle.value = item1.getAttribute('data-id')
             }
 
-            const enrolementInput = document.querySelector('#search-input-enrolement');
-            if (enrolementInput) {
-                const item2 =  document.querySelector(`#table-enrolment-code-${id}`)
-                if(item2) document.getElementById('enrolment_id').value = item2.getAttribute('data-id');
-                enrolementInput.value = item2.innerHTML.trim() || ''
-            }
-
             form.action = link.getAttribute('data-url');
             const methodInput = form.querySelector('input[name="_method"]');
 
@@ -118,6 +111,8 @@
                 const panel = document.querySelector('[data-accordion-target="#accordion-collapse-body-1"] span')
                 panel.innerHTML = "Editar"
             }
+
+            onEditEnrolment(id)
         }
     </script>
 @endsection

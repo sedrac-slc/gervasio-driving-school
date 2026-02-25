@@ -113,27 +113,18 @@
         function formEdit(event) {
             event.preventDefault();
             const link = event.currentTarget;
-
             const id = link.getAttribute('data-json');
             const form = document.getElementById('form-action');
-            const enrolementInput = form.querySelector('input[name="search"]');
-
             form.action = link.getAttribute('data-url');
-
             const methodInput = form.querySelector('input[name="_method"]');
-
-            const studentInput = document.querySelector('#search-input-student');
-            if (studentInput) {
-                const item2 =  document.querySelector(`#table-user-name-${id}`)
-                if(item2) document.getElementById('student_id').value = item2.getAttribute('data-id');
-                studentInput.value = item2.innerHTML.trim() || ''
-            }
 
             if (methodInput) {
                 methodInput.value = 'PUT';
                 const panel = document.querySelector('[data-accordion-target="#accordion-collapse-body-1"] span')
                 panel.innerHTML = "Editar"
             }
+
+            onEditStudent(id);
         }
     </script>
 @endsection

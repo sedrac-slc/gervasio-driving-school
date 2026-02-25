@@ -14,9 +14,13 @@ class Lesson extends Model
         "type"
     ];
 
+    public function drivingLessons() {
+        return $this->hasMany(DrivingLesson::class);
+    }
+
     public function labelTopic() {
-        if($this->topic == 'TEORIC') return "Teórica";
-        return "Prático";
+        if($this->type == 'DRIVER') return "Prático";
+        return "Teórica";
     }
 
 }

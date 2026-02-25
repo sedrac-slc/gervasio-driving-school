@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('driving_lessons', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('lesson_id');
             $table->string('instructor_id');
             $table->string('enrolment_id');
             $table->string('vehicle_id');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->foreign('instructor_id')->references('id')->on('instructors');
             $table->foreign('enrolment_id')->references('id')->on('enrolments');
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
+            $table->foreign('lesson_id')->references('id')->on('lessons');
         });
     }
 
