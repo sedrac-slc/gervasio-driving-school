@@ -13,4 +13,11 @@ class ProfileController extends Controller
         return view('profile');
     }
 
+    public function upate(Request $request) {
+        $request->validate(['name' => 'required']);
+        auth()->user()->update([ 'name' => $request->name ]);
+        flash()->success('Actualizar o dados do utilizador');
+        return redirect()->back();
+    }
+
 }

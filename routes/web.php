@@ -43,9 +43,12 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('instructors', InstructorController::class);
     Route::resource('driving_lessons', DrivingLessonController::class);
 
+
     Route::post('lessons-search', [LessonController::class, 'search'])->name('lessons.search');
+    Route::post('vehicles-search', [VehicleController::class, 'search'])->name('vehicles.search');
     Route::post('payments-search', [PaymentController::class, 'search'])->name('payments.search');
     Route::post('articles-search', [ArticleCrontroller::class, 'search'])->name('articles.search');
+    Route::post('categories-search', [CategoryController::class, 'search'])->name('categories.search');
     Route::post('enrolments-search', [EnrolmentController::class, 'search'])->name('enrolments.search');
     Route::post('classrooms-search', [ClassroomController::class, 'search'])->name('classrooms.search');
 

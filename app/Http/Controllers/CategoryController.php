@@ -10,13 +10,28 @@ use Exception;
 
 class CategoryController extends Controller
 {
+
+    public function panel($categories)
+    {
+        $panel = 'Categorias';
+        return view('auth.category.index', compact('categories', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $categories = Category::orderBy('created_at', 'desc')->paginate();
-        return view('auth.category.index', compact('categories'));
+        return $this->panel($categories);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $categories = Category::where('name','like',"%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($categories);
     }
 
     /**

@@ -14,7 +14,7 @@ class ClassroomController extends Controller
     public function panel($classrooms)
     {
         $panel = 'Turmas';
-        return view('auth.classroom.index', compact('classrooms'));
+        return view('auth.classroom.index', compact('classrooms', 'panel'));
     }
 
     /**

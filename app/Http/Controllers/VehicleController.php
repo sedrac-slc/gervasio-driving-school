@@ -10,13 +10,27 @@ use Exception;
 
 class VehicleController extends Controller
 {
+    public function panel($vehicles)
+    {
+        $panel = 'Veículos';
+        return view('auth.vehicle.index', compact('vehicles', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $vehicles = Vehicle::orderBy('created_at', 'desc')->paginate();
-        return view('auth.vehicle.index', compact('vehicles'));
+        return $this->panel($vehicles);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $categories = Vehicle::where('name','like',"%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($categories);
     }
 
     /**

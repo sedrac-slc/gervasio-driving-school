@@ -10,13 +10,27 @@ use Exception;
 
 class EnrolmentController extends Controller
 {
+    public function panel($enrolments)
+    {
+        $panel = 'Matrículas';
+        return view('auth.enrolment.index', compact('enrolments', 'panel'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $enrolments = Enrolment::orderBy('created_at', 'desc')->paginate();
-        return view('auth.enrolment.index', compact('enrolments'));
+        return $this->panel($enrolments);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $enrolments = Enrolment::where('code','like',"%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($enrolments);
     }
 
     /**
