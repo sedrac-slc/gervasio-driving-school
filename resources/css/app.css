@@ -29,3 +29,10 @@
 .htmx-request.htmx-indicator#table-overlay {
     display: flex;
 }
+
+.login-page {
+    background: url('../img/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
