@@ -27,10 +27,10 @@
                     <x-input-field label="Senha actual" type="password" name="password" value="{{ old('password') }}" />
                 </div>
                 <div class="">
-                    <x-input-field label="Senha nova" type="password" name="password" value="{{ old('password') }}" />
+                    <x-input-field label="Senha nova" type="password" name="new_password" value="{{ old('password') }}" />
                 </div>
                 <div class="">
-                    <x-input-field label="Confirma senha" type="password" name="password" value="{{ old('password') }}" />
+                    <x-input-field label="Confirma senha" type="password" name="confirm_password" value="{{ old('password') }}" />
                 </div>
             </div>
             <x-submit-confirm />
