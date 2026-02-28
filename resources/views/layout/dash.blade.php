@@ -240,7 +240,7 @@
         <div id="logaut-popup-modal" tabindex="-1"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
-                <div class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6">
+                <div class="relative bg-white border border-default rounded-base shadow-sm p-4 md:p-6">
                     <button type="button"
                         class="absolute top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
                         data-modal-hide="logaut-popup-modal">
@@ -261,7 +261,7 @@
                         <h3 class="mb-6 text-body">Tens certeza que desejas sair do painel, confirma esta acção?</h3>
                         <div class="flex items-center space-x-4 justify-center">
                             <a data-modal-hide="logaut-popup-modal" href="{{ route('logout') }}"
-                                class="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                                class="text-white bg-red-500 box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                                 Sim, confirmo
                             </a>
                             <button data-modal-hide="logaut-popup-modal" type="button"
