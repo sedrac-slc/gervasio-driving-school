@@ -43,6 +43,10 @@ class Enrolment extends Model
         return $this->hasMany(DrivingLesson::class);
     }
 
+    public function examAppointments() {
+        return $this->hasMany(ExamAppointment::class);
+    }
+
     public function payments() {
         return $this->hasMany(Payment::class);
     }

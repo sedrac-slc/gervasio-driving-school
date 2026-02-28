@@ -51,7 +51,7 @@ CREATE TABLE `marcacao_exame` (
   `id` char(36) NOT NULL,
   `estudante_id` varchar(255) NOT NULL,
   `data_realizacao` date NOT NULL,
-  `hour_start` time NOT NULL,
+  `hour` time NOT NULL,
   `criado_em` timestamp NULL DEFAULT NULL,
   `actualizado_em` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

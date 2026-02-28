@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('exam_appointments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('student_id');
-            $table->date('date_realisation');
-            $table->time('hour_start');
+            $table->string('enrolment_id');
+            $table->date('date');
+            $table->time('hour');
+            $table->boolean('completed')->default(false);
+            $table->boolean('approved')->default(false);
             $table->timestamps();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('enrolment_id')->references('id')->on('enrolments');
         });
     }
 

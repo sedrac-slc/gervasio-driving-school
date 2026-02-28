@@ -17,12 +17,6 @@ class EnrolmentSeeder extends Seeder
        $ana = $this->student(StudentSeeder::ANA);
        $data = ['classroom_id' => $ligeiro_morning_06h40_07h50->id, 'student_id' => $ana->id];
        $enrolment1 = Enrolment::updateOrCreate($data, $data);
-       $enrolment1->teoricLessons()->createMany([
-            ["topic" => "Código de estrada"],
-            ["topic" => "Agencias de regulamentação de código de estrada"],
-            ["topic" => "Sinalização de sinais"],
-            ["topic" => "Sinais vertical"],
-       ]);
 
        $ligeiro_morning_08h00_09h30 = Classroom::where(ClassroomSeeder::LIGEIRO_MORNING_08H00_09H30)->first();
        $paula = $this->student(StudentSeeder::PAULA);
@@ -31,9 +25,9 @@ class EnrolmentSeeder extends Seeder
 
 
        $ligeiro_morning_08h00_09h30 = Classroom::where(ClassroomSeeder::LIGEIRO_MORNING_08H00_09H30)->first();
-       $paula = $this->student(StudentSeeder::MIGUEL);
-       $data = ['classroom_id' => $ligeiro_morning_08h00_09h30->id, 'student_id' => $paula->id];
-       $enrolment2 =  Enrolment::updateOrCreate($data, $data);
+       $miguel = $this->student(StudentSeeder::MIGUEL);
+       $data = ['classroom_id' => $ligeiro_morning_08h00_09h30->id, 'student_id' => $miguel->id];
+       $enrolment3 =  Enrolment::updateOrCreate($data, $data);
     }
 
     public function student($data){

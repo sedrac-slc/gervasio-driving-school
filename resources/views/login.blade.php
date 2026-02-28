@@ -4,7 +4,7 @@
         <form class="w-full mx-auto rounded-2xl md:px-10 lg:px-32 p-3" action="{{ route('login') }}" method="POST">
             <div class="absolute top-5 left-5">
                 <a class="p-2 rounded-2xl flex gap-1 items-center" href="/">
-                    <i class="fas fa-angle-left"></i>
+                    <i class="fa fa-arrow-left"></i>
                     <span>Voltar</span>
                 </a>
             </div>

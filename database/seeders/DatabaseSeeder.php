@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ArticleSeeder::class,
             VehicleSeeder::class,
             InstructorSeeder::class,
+            LessonSeeder::class,
             StudentSeeder::class,
             EnrolmentSeeder::class,
         ]);

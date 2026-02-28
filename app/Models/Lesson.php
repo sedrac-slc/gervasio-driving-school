@@ -9,6 +9,9 @@ class Lesson extends Model
 {
     use HasUuids;
 
+    const DRIVER = 'DRIVER';
+    const TEORIC = 'TEORIC';
+
     protected $fillable = [
         "topic",
         "type"

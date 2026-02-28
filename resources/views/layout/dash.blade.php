@@ -1,5 +1,5 @@
 @extends('layout.default', [
-    'classe' => 'bg-gray-200'
+    'classe' => 'bg-gray-200',
 ])
 @section('content')
     <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
@@ -23,6 +23,13 @@
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa fa-home" aria-hidden="true"></i>
                         <span class="ms-3">Página inicial</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('dashboard') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                        <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -112,9 +119,18 @@
                         </li>
                         <li>
                             <a href="{{ route('driving_lessons.index') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Condução</a>
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                Condução
+                            </a>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ route('exam_appointments.index') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <span class="ms-3">Marcação de exame</span>
+                    </a>
                 </li>
             </ul>
         </div>
