@@ -1,7 +1,7 @@
 @extends('layout.reports')
 
 @section('content')
-    <h1>Relatório de Instrutores</h1>
+    <h1>Relatório de Estudantes</h1>
 
     <table>
         <thead>
@@ -13,22 +13,22 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($instructors as $i => $instructor)
+            @forelse ($students as $i => $student)
                 <tr>
                     <td>{{ $i + 1 }}</td>
-                    <td>{{ $instructor->user->name }}</td>
-                    <td>{{ $instructor->user->email }}</td>
-                    <td>{{ $instructor->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $student->user->name }}</td>
+                    <td>{{ $student->user->email }}</td>
+                    <td>{{ $student->created_at->format('d/m/Y') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="empty">Nenhum instrutor encontrado.</td>
+                    <td colspan="4" class="empty">Nenhum estudante encontrado.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 
     <div style="margin-top:16px; font-size:10px; color:#6b7280;">
-        Total: <strong>{{ $instructors->count() }}</strong> instrutores
+        Total: <strong>{{ $students->count() }}</strong> estudantes
     </div>
 @endsection

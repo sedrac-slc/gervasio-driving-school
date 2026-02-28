@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{
     LoginController,
+    ReportController,
     LessonController,
     ProfileController,
     PaymentController,
@@ -66,6 +67,12 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('enrolments-search-input', [EnrolmentController::class, 'searchInput'])->name('enrolments.search-input');
 
     Route::post('exam_appointments/{id}/completed', [ExamAppointmentController::class, 'completed'])->name('exam_appointments.completed');
+
+    Route::get('report/lesson', [ReportController::class, 'lesson'])->name('report.lesson');
+    Route::get('report/student', [ReportController::class, 'student'])->name('report.student');
+    Route::get('report/instrutor', [ReportController::class, 'instrutor'])->name('report.instrutor');
+    Route::get('report/exam-appointment/approved', [ReportController::class, 'examAppointmentApproved'])->name('report.exam-appointment.approved');
+    Route::get('report/exam-appointment/completed', [ReportController::class, 'examAppointmentCompleted'])->name('report.exam-appointment.completed');
 });
 
 
