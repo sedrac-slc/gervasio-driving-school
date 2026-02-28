@@ -7,7 +7,7 @@ use App\Models\Lesson;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class SelectLessonTopicDriver extends Component
+class SelectLessonTopicTeoric extends Component
 {
     /**
      * Create a new component instance.
@@ -22,9 +22,9 @@ class SelectLessonTopicDriver extends Component
      */
     public function render(): View|Closure|string
     {
-        $lessons = Lesson::where('type', Lesson::DRIVER)
+        $lessons = Lesson::where('type', Lesson::TEORIC)
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('components.select-lesson-topic-driver', compact('lessons'));
+        return view('components.select-lesson-topic-teoric', compact('lessons'));
     }
 }

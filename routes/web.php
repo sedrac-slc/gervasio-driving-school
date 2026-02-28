@@ -47,6 +47,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('secretaries', SecretaryController::class);
     Route::resource('instructors', InstructorController::class);
     Route::resource('driving_lessons', DrivingLessonController::class);
+    Route::resource('teoric_lessons', TeoricLessonController::class);
     Route::resource('exam_appointments', ExamAppointmentController::class);
 
 
@@ -60,6 +61,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('classrooms-search', [ClassroomController::class, 'search'])->name('classrooms.search');
     Route::post('secretaries-search', [SecretaryController::class, 'search'])->name('secretaries.search');
     Route::post('instructors-search', [InstructorController::class, 'search'])->name('instructors.search');
+    Route::post('teoric_lessons_search', [TeoricLessonController::class, 'search'])->name('teoric_lessons.search');
     Route::post('driving_lessons_search', [DrivingLessonController::class, 'search'])->name('driving_lessons.search');
     Route::post('exam_appointments_search', [ExamAppointmentController::class, 'search'])->name('exam_appointments.search');
 
