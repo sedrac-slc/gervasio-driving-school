@@ -23,7 +23,6 @@ class EnrolmentSeeder extends Seeder
        $data = ['classroom_id' => $ligeiro_morning_08h00_09h30->id, 'student_id' => $paula->id];
        $enrolment2 =  Enrolment::updateOrCreate($data, $data);
 
-
        $ligeiro_morning_08h00_09h30 = Classroom::where(ClassroomSeeder::LIGEIRO_MORNING_08H00_09H30)->first();
        $miguel = $this->student(StudentSeeder::MIGUEL);
        $data = ['classroom_id' => $ligeiro_morning_08h00_09h30->id, 'student_id' => $miguel->id];

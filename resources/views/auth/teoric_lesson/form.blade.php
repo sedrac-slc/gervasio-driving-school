@@ -3,7 +3,7 @@
     @method('POST')
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
         <div>
-            <select-lesson-topic-teoric />
+            <x-select-lesson-topic-teoric />
         </div>
         <div>
             <x-input-search-enrolement/>

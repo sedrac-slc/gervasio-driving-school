@@ -60,7 +60,10 @@ class ExamAppointmentController extends Controller
     public function store(ExamAppointmentRequest $request)
     {
         try{
-            ExamAppointment::create($request->all());
+            $data = $request->all();
+            $data['completed'] = $request->completed && $request->completed == "true";
+            $data['approved'] = $request->approved && $request->approved == "true";
+            ExamAppointment::create($data);
             flash()->success('Maracação exame criado com successo');
             return redirect()->route('exam_appointments.index');
         }catch(Exception){
@@ -84,8 +87,11 @@ class ExamAppointmentController extends Controller
     public function update(ExamAppointmentRequest $request, string $id)
     {
         try{
+            $data = $request->all();
+            $data['completed'] = $request->completed && $request->completed == "true";
+            $data['approved'] = $request->approved && $request->approved == "true";
             $examAppointment = ExamAppointment::find($id);
-            $examAppointment->update($request->all());
+            $examAppointment->update($data);
             flash()->success('Maracação exame editado com successo');
             return redirect()->route('exam_appointments.index');
         }catch(Exception){

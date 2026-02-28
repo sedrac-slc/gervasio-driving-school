@@ -15,7 +15,7 @@
             </button>
         </h2>
         <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 p-2">
                 <x-link-report-pdf href="{{ route('report.exam-appointment.approved') }}" label="Exames aprovados" />
                 <x-link-report-pdf href="{{ route('report.exam-appointment.completed') }}" label="Exames completados" />
             </div>
@@ -101,14 +101,14 @@
                                 <td class="px-6 py-4" id="table-hour-{{ $examAppointment->id }}">
                                     {{ format_time($examAppointment->hour) }}
                                 </td>
-                                <td class="px-6 py-4" id="table-completed-{{ $examAppointment->id }}">
+                                <td class="px-6 py-4" id="table-completed-{{ $examAppointment->id }}" data-id="{{$examAppointment->completed ? 'true' : 'false' }}">
                                     @if ($examAppointment->completed)
                                         <div class="bg bg-green-300 px-2">Sim</div>
                                     @else
                                         <div class="bg bg-red-300 px-2">Não</div>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4" id="table-approved-{{ $examAppointment->id }}">
+                                <td class="px-6 py-4" id="table-approved-{{ $examAppointment->id }}" data-id="{{$examAppointment->approved ? 'true' : 'false' }}">
                                     @if ($examAppointment->approved)
                                         <div class="bg bg-green-300 px-2">Sim</div>
                                     @else
@@ -146,9 +146,21 @@
             const form = document.getElementById('form-action');
             const dateInput = form.querySelector('input[name="date"]');
             const hourInput = form.querySelector('input[name="hour"]');
+            const selectCompleted = form.querySelector('select[name="completed"]')
+            const selectApproved = form.querySelector('select[name="approved"]')
 
             if (dateInput) dateInput.value = document.querySelector(`#table-data-${id}`).innerHTML.trim() || '';
             if (hourInput) hourInput.value = document.querySelector(`#table-hour-${id}`).innerHTML.trim() || '';
+
+            if (selectCompleted) {
+                const item1 = document.querySelector(`#table-completed-${id}`)
+                if (item1) selectCompleted.value = item1.getAttribute('data-id')
+            }
+
+            if (selectApproved) {
+                const item2 = document.querySelector(`#table-approved-${id}`)
+                if (item2) selectApproved.value = item2.getAttribute('data-id')
+            }
 
             form.action = link.getAttribute('data-url');
 

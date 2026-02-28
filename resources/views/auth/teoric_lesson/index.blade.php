@@ -15,7 +15,7 @@
             </button>
         </h2>
         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-            @include('auth.driving_lesson.form')
+            @include('auth.teoric_lesson.form')
         </div>
 
         <h2 id="accordion-collapse-heading-2">
@@ -61,7 +61,7 @@
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     id="table-lesson-{{ $teoricLesson->id }}"
-                                    data-id="{{ $teoricLesson->instructor->id }}">
+                                    data-id="{{ $teoricLesson->lesson->id }}">
                                     {{ $teoricLesson->lesson->topic }}
                                 </th>
                                 <td class="px-6 py-4" id="table-enrolment-code-{{ $teoricLesson->id }}"

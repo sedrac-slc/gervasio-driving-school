@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\LaravelPdf\Facades\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExamAppointment;
 use App\Models\Instructor;
+use App\Models\Secretary;
 use App\Models\Student;
 use App\Models\Vehicle;
 use App\Models\Lesson;
@@ -14,32 +15,25 @@ class ReportController extends Controller
     public function lesson()
     {
         $lessons = Lesson::orderBy('created_at', 'desc')->get();
-
-        return Pdf::view('reports.lesson', ['lessons' => $lessons])
-            ->name('relatorio-licoes.pdf')
-            ->inline();
+        return Pdf::loadView('reports.lesson', ['lessons' => $lessons])->stream('relatorio-licoes.pdf');
     }
 
     public function student()
     {
-        $students = Student::with('user')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $students = Student::with('user')->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.student', ['students' => $students])->stream('relatorio-estudantes.pdf');
+    }
 
-        return Pdf::view('reports.student', ['students' => $students])
-            ->name('relatorio-estudantes.pdf')
-            ->inline();
+    public function secretary()
+    {
+        $secretaries = Secretary::with('user')->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.secretary', ['secretaries' => $secretaries])->stream('relatorio-secretarioes.pdf');
     }
 
     public function instrutor()
     {
-        $instructors = Instructor::with('user')
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return Pdf::view('reports.instructor', ['instructors' => $instructors])
-            ->name('relatorio-instrutores.pdf')
-            ->inline();
+        $instructors = Instructor::with('user')->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.instructor', ['instructors' => $instructors])->stream('relatorio-instrutores.pdf');
     }
 
     public function examAppointmentApproved()
@@ -49,12 +43,10 @@ class ReportController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return Pdf::view('reports.exam-appointment-approved', [
+        return Pdf::loadView('reports.exam-appointment-approved', [
             'examAppointments' => $examAppointments,
             'title'            => 'Marcações de Exame Aprovadas',
-        ])
-            ->name('marcacoes-aprovadas.pdf')
-            ->inline();
+        ])->stream('marcacoes-aprovadas.pdf');
     }
 
     public function examAppointmentCompleted()
@@ -64,11 +56,9 @@ class ReportController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return Pdf::view('reports.exam-appointment-completed', [
+        return Pdf::loadView('reports.exam-appointment-completed', [
             'examAppointments' => $examAppointments,
             'title'            => 'Marcações de Exame Concluídas',
-        ])
-            ->name('marcacoes-concluidas.pdf')
-            ->inline();
+        ])->stream('marcacoes-concluidas.pdf');
     }
 }

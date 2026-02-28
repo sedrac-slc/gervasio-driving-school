@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     EnrolmentController,
     DashboardController,
     InstructorController,
+    TeoricLessonController,
     DrivingLessonController,
     ExamAppointmentController
 };
@@ -72,6 +73,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('report/lesson', [ReportController::class, 'lesson'])->name('report.lesson');
     Route::get('report/student', [ReportController::class, 'student'])->name('report.student');
+    Route::get('report/secretary', [ReportController::class, 'secretary'])->name('report.secretary');
     Route::get('report/instrutor', [ReportController::class, 'instrutor'])->name('report.instrutor');
     Route::get('report/exam-appointment/approved', [ReportController::class, 'examAppointmentApproved'])->name('report.exam-appointment.approved');
     Route::get('report/exam-appointment/completed', [ReportController::class, 'examAppointmentCompleted'])->name('report.exam-appointment.completed');

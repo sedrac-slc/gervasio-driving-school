@@ -34,7 +34,10 @@
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('secretaries.search') }}" />
-                <x-button-create href="{{ route('secretaries.store') }}" />
+                <div class="flex gap-1">
+                    <x-link-report-pdf href="{{ route('report.secretary') }}" />
+                    <x-button-create href="{{ route('secretaries.store') }}" />
+                </div>
             </div>
             <div class="relative overflow-x-auto shadow-md my-3">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

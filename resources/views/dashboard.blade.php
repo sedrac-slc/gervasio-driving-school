@@ -1,11 +1,11 @@
 @extends('layout.dash')
 
 @section('body')
-<div class="min-h-screen bg-gray-950 text-gray-100 p-6 md:p-10">
+<div class="min-h-screen bg-white text-gray-100 p-6 md:p-10">
 
     {{-- Header --}}
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-2xl font-extrabold tracking-tight text-white">
+        <h1 class="text-2xl font-extrabold tracking-tight text-black">
             Visão <span class="text-green-400">Geral</span>
         </h1>
         <span class="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-green-400/10 text-green-400 border border-green-400/20">
@@ -44,8 +44,8 @@
 
     {{-- Table Section --}}
     <div class="flex items-center gap-4 mb-4">
-        <h2 class="text-sm font-bold text-white whitespace-nowrap">Últimas Marcações Aprovadas</h2>
-        <div class="flex-1 h-px bg-white/5"></div>
+        <h2 class="text-sm font-bold text-black whitespace-nowrap">Últimas Marcações Aprovadas</h2>
+        <div class="flex-1 h-px bg-green-900"></div>
     </div>
 
     <div class="bg-gray-900 border border-white/5 rounded-2xl overflow-hidden">

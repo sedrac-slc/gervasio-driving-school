@@ -35,7 +35,7 @@
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('students.search') }}" />
                 <div class="flex gap-1">
-                    <x-link-report-pdf href="{{ route('report.student') }}" />
+                    <x-link-report-pdf href="{{ route('report.student') }}" label="Exporta"/>
                     <x-button-create href="{{ route('students.store') }}"/>
                 </div>
             </div>
