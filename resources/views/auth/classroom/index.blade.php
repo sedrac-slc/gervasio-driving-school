@@ -82,7 +82,7 @@
                                     {{ $classroom->finished }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a class="text-blue-600">
+                                    <a class="text-blue-600" href="{{ route('enrolments.classroom', $classroom->id) }}">
                                         abrir( {{ $classroom->enrolments->count() }} )
                                     </a>
                                 </td>

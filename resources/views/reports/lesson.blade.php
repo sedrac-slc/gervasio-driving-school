@@ -1,13 +1,18 @@
 @extends('layout.reports')
 
 @section('content')
-    <h1>Relatório de Lições</h1>
+    @isset($title)
+        <h1>{{ $title }}</h1>
+    @else
+        <h1>Relatório de Lições</h1>
+    @endisset
 
     <table>
         <thead>
             <tr>
                 <th>#</th>
                 <th>Título</th>
+                <th>Tipo</th>
                 <th>Data de criação</th>
             </tr>
         </thead>
@@ -15,7 +20,8 @@
             @forelse ($lessons as $i => $lesson)
                 <tr>
                     <td>{{ $i + 1 }}</td>
-                    <td>{{ $lesson->topic ?? '—' }}</td>
+                    <td>{{ $lesson->topic }}</td>
+                    <td>{{ $lesson->labelTopic() }}</td>
                     <td>{{ $lesson->created_at->format('d/m/Y') }}</td>
                 </tr>
             @empty

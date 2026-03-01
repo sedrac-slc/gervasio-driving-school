@@ -81,6 +81,24 @@ class ReportController extends Controller
         return Pdf::loadView('reports.payment-file', ['payment' => $payment])->stream('relatorio-comprovativo.pdf');
     }
 
+    public function teoricLessons()
+    {
+        $lessons = Lesson::where('type', Lesson::TEORIC)->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.lesson', [
+            'lessons' => $lessons,
+            'title' => 'Relatório de aulas teóricas'
+        ])->stream('relatorio-licoes.pdf');
+    }
+
+    public function drivingLessons()
+    {
+        $lessons = Lesson::where('type', Lesson::DRIVER)->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.lesson', [
+            'lessons' => $lessons,
+            'title' => 'Relatório de aulas condução'
+        ])->stream('relatorio-licoes.pdf');
+    }
+
     public function examAppointmentApproved()
     {
         $examAppointments = ExamAppointment::with('enrolment.student.user')

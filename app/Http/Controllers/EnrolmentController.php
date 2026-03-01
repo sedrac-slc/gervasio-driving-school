@@ -24,6 +24,14 @@ class EnrolmentController extends Controller
         return $this->panel($enrolments);
     }
 
+    public function classroom($classroom_id)
+    {
+        $enrolments = Enrolment::where('classroom_id', $classroom_id)
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+        return $this->panel($enrolments);
+    }
+
     public function search(Request $request)
     {
         $search = $request->input('search');

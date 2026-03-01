@@ -68,7 +68,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('students-search-input', [StudentController::class, 'searchInput'])->name('students.search-input');
     Route::get('enrolments-search-input', [EnrolmentController::class, 'searchInput'])->name('enrolments.search-input');
-
+    Route::get('enrolments/{classroom_id}/classroom', [EnrolmentController::class, 'classroom'])->name('enrolments.classroom');
     Route::post('exam_appointments/{id}/completed', [ExamAppointmentController::class, 'completed'])->name('exam_appointments.completed');
 
     Route::get('report/lesson', [ReportController::class, 'lesson'])->name('report.lesson');
@@ -80,6 +80,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('report/classroom', [ReportController::class, 'classroom'])->name('report.classroom');
     Route::get('report/secretary', [ReportController::class, 'secretary'])->name('report.secretary');
     Route::get('report/instrutor', [ReportController::class, 'instrutor'])->name('report.instrutor');
+    Route::get('report/teoric_lessons', [ReportController::class, 'teoricLessons'])->name('report.teoric_lesson');
+    Route::get('report/driving_lessons', [ReportController::class, 'drivingLessons'])->name('report.driving_lesson');
     Route::get('report/{id}/payment', [ReportController::class, 'paymentFile'])->name('report.payment-file');
     Route::get('report/exam-appointment/approved', [ReportController::class, 'examAppointmentApproved'])->name('report.exam-appointment.approved');
     Route::get('report/exam-appointment/completed', [ReportController::class, 'examAppointmentCompleted'])->name('report.exam-appointment.completed');

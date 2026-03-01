@@ -34,7 +34,10 @@
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('vehicles.search') }}" />
-                <x-button-create href="{{ route('vehicles.store') }}" />
+                <div class="flex gap-1">
+                    <x-link-report-pdf href="{{ route('report.vehicle') }}" />
+                    <x-button-create href="{{ route('vehicles.store') }}" />
+                </div>
             </div>
             <div class="relative overflow-x-auto shadow-md my-3">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -96,7 +99,8 @@
             const licensePlateInput = form.querySelector('input[name="license_plate"]');
 
             if (nameInput) nameInput.value = document.querySelector(`#table-name-${id}`).innerHTML.trim() || '';
-            if (licensePlateInput) licensePlateInput.value = parseFloat(document.querySelector(`#table-license_plate-${id}`).innerHTML.trim()) || '';
+            if (licensePlateInput) licensePlateInput.value = parseFloat(document.querySelector(`#table-license_plate-${id}`)
+                .innerHTML.trim()) || '';
             form.action = link.getAttribute('data-url');
 
             const methodInput = form.querySelector('input[name="_method"]');
