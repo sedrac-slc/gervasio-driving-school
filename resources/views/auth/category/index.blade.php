@@ -34,7 +34,10 @@
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('categories.search') }}" />
-                <x-button-create href="{{ route('categories.store') }}" />
+                <div class="flex gap-1">
+                    <x-link-report-pdf href="{{ route('report.category') }}" />
+                    <x-button-create href="{{ route('categories.store') }}" />
+                </div>
             </div>
             <div class="relative overflow-x-auto shadow-md my-3">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -62,7 +65,7 @@
                         @foreach ($categories as $category)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row"  id="table-name-{{ $category->id }}"
+                                <th scope="row" id="table-name-{{ $category->id }}"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $category->name }}
                                 </th>
@@ -110,9 +113,12 @@
             const completedInstallmentInput = form.querySelector('input[name="completed_installment"]');
 
             if (nameInput) nameInput.value = document.querySelector(`#table-name-${id}`).innerHTML.trim() || '';
-            if (priceInput) priceInput.value = parseFloat(document.querySelector(`#table-price-${id}`).innerHTML.trim()) ||'';
-            if (installmentInput) installmentInput.value = parseFloat(document.querySelector(`#table-installment-${id}`).innerHTML.trim()) ||'';
-            if (completedInstallmentInput) completedInstallmentInput.value = parseFloat(document.querySelector(`#table-completed_installment-${id}`).innerHTML.trim()) ||'';
+            if (priceInput) priceInput.value = parseFloat(document.querySelector(`#table-price-${id}`).innerHTML.trim()) ||
+                '';
+            if (installmentInput) installmentInput.value = parseFloat(document.querySelector(`#table-installment-${id}`)
+                .innerHTML.trim()) || '';
+            if (completedInstallmentInput) completedInstallmentInput.value = parseFloat(document.querySelector(
+                `#table-completed_installment-${id}`).innerHTML.trim()) || '';
 
             form.action = link.getAttribute('data-url');
 

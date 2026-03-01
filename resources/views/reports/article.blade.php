@@ -1,32 +1,32 @@
 @extends('layout.reports')
 
 @section('content')
-    <h1>Relatório de Lições</h1>
+    <h1>Relatório de Artigos</h1>
 
     <table>
         <thead>
             <tr>
                 <th>#</th>
-                <th>Título</th>
-                <th>Data de criação</th>
+                <th>Nome</th>
+                <th>Preço</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($lessons as $i => $lesson)
+            @forelse ($articles as $i => $article)
                 <tr>
                     <td>{{ $i + 1 }}</td>
-                    <td>{{ $lesson->topic ?? '—' }}</td>
-                    <td>{{ $lesson->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $article->name }}</td>
+                    <td>{{ $article->price }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="empty">Nenhuma lição encontrada.</td>
+                    <td colspan="3" class="empty">Nenhum artigo encontrado.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 
     <div style="margin-top:16px; font-size:10px; color:#6b7280;">
-        Total: <strong>{{ $lessons->count() }}</strong> lições
+        Total: <strong>{{ $articles->count() }}</strong>
     </div>
 @endsection

@@ -26,7 +26,10 @@
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('payments.search') }}" />
-                <x-button-create href="{{ route('payments.store') }}" />
+                <div class="flex gap-1">
+                    <x-link-report-pdf href="{{ route('report.payment') }}" />
+                    <x-button-create href="{{ route('payments.store') }}" />
+                </div>
             </div>
             <div class="relative overflow-x-auto shadow-md my-3">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -45,6 +48,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Price
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Comprovativo
+                            </th>
                             <th colspan="1" scope="col" class="px-6 py-3 text-center">
                                 <span>Acção</span>
                             </th>
@@ -54,18 +60,27 @@
                         @foreach ($payments as $payment)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" id="table-enrolment-code-{{ $payment->id }}" data-id="{{ $payment->enrolment->id}}"
+                                <th scope="row" id="table-enrolment-code-{{ $payment->id }}"
+                                    data-id="{{ $payment->enrolment->id }}"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $payment->enrolment->code }}
                                 </th>
                                 <td class="px-6 py-4" id="table-student-name-{{ $payment->id }}">
                                     {{ $payment->enrolment->student->user->name }}
                                 </td>
-                                <td class="px-6 py-4" id="table-article-name-{{ $payment->id }}" data-id="{{ $payment->article_id }}">
+                                <td class="px-6 py-4" id="table-article-name-{{ $payment->id }}"
+                                    data-id="{{ $payment->article_id }}">
                                     {{ $payment->article->name }}
                                 </td>
-                                <td class="px-6 py-4" id="table-article-price-{{ $payment->id }}">
+                                <td class="px-6 py-4" id="table-article-comprovativo-{{ $payment->id }}">
                                     {{ $payment->article->price }}
+                                </td>
+
+                                <td class="px-6 py-4" id="table-article-price-{{ $payment->id }}">
+                                    <a href="{{ route('report.payment-file', $payment->id) }}">
+                                        <i class="fa fa-file-pdf-o text-red-600"></i>
+                                        ver
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4 text-center flex items-center gap-10 justify-center">
                                     <x-link-edit href="{{ route('payments.update', $payment->id) }}" redirect
@@ -98,9 +113,9 @@
             const form = document.getElementById('form-action');
             const selectArticle = document.getElementById('select-article')
 
-            if (selectArticle)  {
+            if (selectArticle) {
                 const item1 = document.querySelector(`table-article-name-${id}`)
-                if(item1) selectArticle.value = item1.getAttribute('data-id')
+                if (item1) selectArticle.value = item1.getAttribute('data-id')
             }
 
             form.action = link.getAttribute('data-url');

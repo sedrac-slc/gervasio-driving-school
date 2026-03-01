@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\ExamAppointment;
-use App\Models\Instructor;
-use App\Models\Secretary;
-use App\Models\Student;
-use App\Models\Vehicle;
-use App\Models\Lesson;
+use App\Models\{
+    ExamAppointment,
+    Instructor,
+    Classroom,
+    Secretary,
+    Category,
+    Vehicle,
+    Student,
+    Payment,
+    Lesson,
+    Article
+};
 
 class ReportController extends Controller
 {
@@ -34,6 +40,45 @@ class ReportController extends Controller
     {
         $instructors = Instructor::with('user')->orderBy('created_at', 'desc')->get();
         return Pdf::loadView('reports.instructor', ['instructors' => $instructors])->stream('relatorio-instrutores.pdf');
+    }
+
+    public function article()
+    {
+        $articles = Article::orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.article', ['articles' => $articles])->stream('relatorio-articles.pdf');
+    }
+
+    public function payment()
+    {
+        $payments = Payment::with('enrolment', 'article')->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.payment', ['payments' => $payments])->stream('relatorio-payments.pdf');
+    }
+
+    public function category()
+    {
+        $categories = Category::orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.category', ['categories' => $categories])->stream('relatorio-categories.pdf');
+    }
+
+    public function vehicle()
+    {
+        $vehicles = Vehicle::orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.vehicle', ['vehicles' => $vehicles])->stream('relatorio-vehicles.pdf');
+    }
+
+    public function classroom()
+    {
+        $classrooms =  Classroom::with('category', 'enrolments')->orderBy('created_at', 'desc')->get();
+        return Pdf::loadView('reports.classroom', ['classrooms' => $classrooms])->stream('relatorio-articles.pdf');
+    }
+
+    public function paymentFile($id) {
+        $payment = Payment::with(
+            'enrolment.classroom.category',
+            'enrolment.student.user',
+            'article',
+        )->find($id);
+        return Pdf::loadView('reports.payment-file', ['payment' => $payment])->stream('relatorio-comprovativo.pdf');
     }
 
     public function examAppointmentApproved()

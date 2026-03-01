@@ -34,7 +34,10 @@
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
             <div class="flex flex-col md:flex-row gap-2 items-center justify-between m-2">
                 <x-input-search href="{{ route('classrooms.search') }}" />
-                <x-button-create href="{{ route('classrooms.store') }}" />
+                <div class="flex gap-1">
+                    <x-link-report-pdf href="{{ route('report.classroom') }}" />
+                    <x-button-create href="{{ route('classrooms.store') }}" />
+                </div>
             </div>
             <div class="relative overflow-x-auto shadow-md my-3">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -64,18 +67,18 @@
                         @foreach ($classrooms as $classroom)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" id="table-type-{{$classroom->id}}"
+                                <th scope="row" id="table-type-{{ $classroom->id }}"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $classroom->category->name }}
                                 </th>
                                 <td class="px-6 py-4">
                                     {{ $classroom->period() }}
-                                    <span class="hidden" id="table-type-{{$classroom->id}}"></span>
+                                    <span class="hidden" id="table-type-{{ $classroom->id }}"></span>
                                 </td>
-                                <td class="px-6 py-4" id="table-starter-{{$classroom->id}}">
+                                <td class="px-6 py-4" id="table-starter-{{ $classroom->id }}">
                                     {{ $classroom->starter }}
                                 </td>
-                                <td class="px-6 py-4" id="table-finished-{{$classroom->id}}">
+                                <td class="px-6 py-4" id="table-finished-{{ $classroom->id }}">
                                     {{ $classroom->finished }}
                                 </td>
                                 <td class="px-6 py-4">
@@ -84,7 +87,8 @@
                                     </a>
                                 </td>
                                 <td class="px-6 py-4 text-center flex items-center gap-10 justify-center">
-                                    <x-link-edit href="{{ route('classrooms.update', $classroom->id) }}" redirect json="{{ $classroom->id }}"/>
+                                    <x-link-edit href="{{ route('classrooms.update', $classroom->id) }}" redirect
+                                        json="{{ $classroom->id }}" />
                                     <x-link-delete href="{{ route('classrooms.destroy', $classroom->id) }}" />
                                 </td>
                             </tr>

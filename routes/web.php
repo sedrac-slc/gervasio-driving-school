@@ -73,8 +73,14 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('report/lesson', [ReportController::class, 'lesson'])->name('report.lesson');
     Route::get('report/student', [ReportController::class, 'student'])->name('report.student');
+    Route::get('report/article', [ReportController::class, 'article'])->name('report.article');
+    Route::get('report/payment', [ReportController::class, 'payment'])->name('report.payment');
+    Route::get('report/vehicle', [ReportController::class, 'vehicle'])->name('report.vehicle');
+    Route::get('report/category', [ReportController::class, 'category'])->name('report.category');
+    Route::get('report/classroom', [ReportController::class, 'classroom'])->name('report.classroom');
     Route::get('report/secretary', [ReportController::class, 'secretary'])->name('report.secretary');
     Route::get('report/instrutor', [ReportController::class, 'instrutor'])->name('report.instrutor');
+    Route::get('report/{id}/payment', [ReportController::class, 'paymentFile'])->name('report.payment-file');
     Route::get('report/exam-appointment/approved', [ReportController::class, 'examAppointmentApproved'])->name('report.exam-appointment.approved');
     Route::get('report/exam-appointment/completed', [ReportController::class, 'examAppointmentCompleted'])->name('report.exam-appointment.completed');
 });
