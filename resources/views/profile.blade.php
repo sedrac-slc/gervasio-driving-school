@@ -5,7 +5,7 @@
             @csrf
             @method('PUT')
             <img class="w-30 h-30 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                src="/img/ferr-studio-G2Qjx1y9aAM-unsplash.jpg" alt="Bordered avatar" />
+                src="/img/avatar.png" alt="Bordered avatar" />
 
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2 my-5">
                 <div class="">

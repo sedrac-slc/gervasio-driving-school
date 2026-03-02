@@ -196,7 +196,7 @@
                 <div>
                     <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
                         data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer"
-                        src="/img/ferr-studio-G2Qjx1y9aAM-unsplash.jpg" alt="User dropdown">
+                        src="/img/avatar.png" alt="User dropdown">
                     <div id="userDropdown"
                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
